@@ -1,16 +1,18 @@
 import {Controller, Post, Body} from '@nestjs/common';
+import { LoginUserService } from './login.user.services';
 import { RegisterUserServices } from './register.user.services';
 
 
 @Controller('auth')
-export class RegisterUserController{
+export class AuthUserController{
     constructor(
-        private readonly regiseterUserService: RegisterUserServices
+        private readonly regiseterUserService: RegisterUserServices,
+        private readonly loginUserService: LoginUserService
     ){}
 
     @Post('register')
     async RegisterController(
-        @Body('firstname') fullname:string,
+        @Body('fullname') fullname:string,
         @Body('email') email:string,
         @Body('address') address:string,
         @Body('picture') picture:string,
@@ -19,6 +21,15 @@ export class RegisterUserController{
     
     ){
         const userData = await this.regiseterUserService.registerUser(fullname, email,address,picture,password);
+        return userData;
+    }
+
+    @Post('login')
+    async LoginController(
+        @Body('email') email:string,
+        @Body('password') password:string
+    ){
+        const userData = await this.loginUserService.loginUser(email,password);
         return userData;
     }
 }
