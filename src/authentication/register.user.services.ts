@@ -6,7 +6,7 @@ import {RegisterUserInterface} from './register.user.DTO';
 @Injectable()
 export class RegisterUserServices{
     constructor(
-        @InjectModel('RegisterUserModel') private readonly registerUserModel: Model<RegisterUserInterface>
+        @InjectModel('UserModel') private readonly registerUserModel: Model<RegisterUserInterface>
     ){}
 
     async registerUser(fullname:string, email:string, address:string,picture:string, password:string){
