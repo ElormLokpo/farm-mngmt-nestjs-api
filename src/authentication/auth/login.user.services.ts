@@ -3,11 +3,13 @@ import {InjectModel} from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RegisterUserInterface } from './register.user.DTO';
 const bcrypt = require('bcrypt');
+import { JwtService } from '../jwt/jwt.services';
 
 @Injectable()
 export class LoginUserService{
     constructor(
-        @InjectModel('UserModel') private readonly loginUserModel:Model<RegisterUserInterface>
+        @InjectModel('UserModel') private readonly loginUserModel:Model<RegisterUserInterface>,
+        private readonly jwtService:JwtService
     ){}
 
 
@@ -18,7 +20,8 @@ export class LoginUserService{
 
             const filteredUser = {_id: userExists._id, fullname: userExists.fullname, email: userExists.email}
             if (is_valid){
-                return filteredUser;
+                const token = this.jwtService.generateToken(filteredUser);
+                return {filteredUser, token};
             }else{
                 return null;
             }

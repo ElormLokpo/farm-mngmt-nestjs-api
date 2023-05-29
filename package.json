@@ -1,9 +1,9 @@
 {
-  "name": "farm-management",
+  "name": "farmmanagementbackend",
   "version": "0.0.1",
   "description": "",
   "author": "",
-  "private": true,
+  "private": false,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
@@ -25,6 +25,7 @@
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/platform-express": "^9.0.0",
     "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
