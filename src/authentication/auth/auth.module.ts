@@ -5,6 +5,7 @@ import {MongooseModule} from '@nestjs/mongoose';
 import {RegisterUserSchema} from './register.user.DTO';
 import { LoginUserService } from './login.user.services';
 import { JwtModule } from '../jwt/jwt.module';
+import { GoogleAuthModule } from '../oauth/google.auth.module';
 
 @Module({
     imports:[
@@ -13,5 +14,6 @@ import { JwtModule } from '../jwt/jwt.module';
 ],
     controllers: [AuthUserController],
     providers: [RegisterUserServices,LoginUserService],
+    exports: [RegisterUserServices]
 })
 export class AuthModule{}

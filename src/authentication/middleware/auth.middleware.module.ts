@@ -3,9 +3,6 @@ import { JwtModule } from '../jwt/jwt.module';
 import { AuthMiddleware } from './auth.middleware';
 
 
-
-
-
 @Module({
     imports: [JwtModule]
 })
