@@ -24,5 +24,18 @@ export class RegisterUserServices{
         
     }
 
+    async registerFromGoogle(fullname:string, email:string){
+        const checkEmail = await this.registerUserModel.findOne({email});
+        
+        if (checkEmail){
+            return null;
+
+        }else{
+            const userDataRaw = await this.registerUserModel.create({fullname,email});
+            const userDataFiltered = {_id: userDataRaw._id,fullname: userDataRaw.fullname,email:userDataRaw.email};
+            return userDataFiltered;
+        }
+    }
+
    
 }

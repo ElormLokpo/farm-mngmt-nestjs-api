@@ -13,7 +13,7 @@ export const RegisterUserSchema = new mongoose.Schema({
    
     address:{
         type:String,
-        required: true
+        
     },
     picture: {
         type: String, 
@@ -29,14 +29,17 @@ export const RegisterUserSchema = new mongoose.Schema({
 
 RegisterUserSchema.pre('save', async function(){
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    if(this.password){
+        this.password = await bcrypt.hash(this.password, salt);
+
+    }
 })
 
 
 export interface RegisterUserInterface {
     fullname: string,
     email: string, 
-    address: string,
+    address?: string,
     pricture?: string,
     password: string
 
