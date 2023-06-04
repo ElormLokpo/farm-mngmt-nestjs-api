@@ -24,6 +24,10 @@ export const RegisterUserSchema = new mongoose.Schema({
         type: String, 
         min: [8, 'Password should be at least 8 characters'],
 
+    }, 
+    isFarmer:{
+        type:Boolean,
+        default: true
     }
 }, { timestamps: true })
 
@@ -41,6 +45,7 @@ export interface RegisterUserInterface {
     email: string, 
     address?: string,
     pricture?: string,
-    password: string
+    password: string,
+    isFarmer?: string
 
 }

@@ -14,10 +14,27 @@ export const FarmSchema = mongoose.Schema({
     size: {
         type: Number
     },
-    hasFarmHands:{
-        type: Boolean,
-        default: true
+    farm_type:{
+        type:String,
+        enum: ['crop', 'animal'],
+        default: 'crop'
     },
-    
+    capital: {
+        type: Number
+    }, 
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserModel',
+        required: true
+    }
 
 })
+
+export interface FarmDTO{
+    name:string,
+    location?: string,
+    size?: number,
+    farm_type?: string,
+    capital?: number,
+    owner: string
+}
