@@ -5,6 +5,7 @@ import { AuthMiddlewareModule } from './authentication/middleware/auth.middlewar
 import { GoogleAuthModule } from './authentication/oauth/google.auth.module';
 import {ConfigModule} from '@nestjs/config';
 import { FarmModule } from './farm/farm.module';
+import { FarmHandModule } from './farmhand/farmhand.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { FarmModule } from './farm/farm.module';
     AuthMiddlewareModule,
     AuthModule,
     GoogleAuthModule,
-    FarmModule
+    FarmModule,
+    FarmHandModule
     
   ],
   controllers: [],
