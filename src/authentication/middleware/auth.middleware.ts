@@ -9,7 +9,7 @@ export class AuthMiddleware implements NestMiddleware{
 
     }
     use(req: CustomRequest, res: Response, next:NextFunction){ 
-        const token = req.headers.authorization.split(' ')[0];
+        const token = req.headers.authorization?.split(' ')[0];
         const verify_token = this.jwtservice.validateToken(token); 
 
         if(verify_token){
