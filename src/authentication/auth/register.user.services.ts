@@ -9,15 +9,15 @@ export class RegisterUserServices{
         @InjectModel('UserModel') private readonly registerUserModel: Model<RegisterUserInterface>
     ){}
 
-    async registerUser(fullname:string, email:string, address:string,picture:string, password:string){
+    async registerUser(fullname:string, email:string, address:string,picture:string, password:string, isFarmer:string){
         const checkEmail = await this.registerUserModel.findOne({email});
         
         if (checkEmail){
             return null;
 
         }else{
-            const userDataRaw = await this.registerUserModel.create({fullname,email,address,picture,password});
-            const userDataFiltered = {_id: userDataRaw._id,fullname: userDataRaw.fullname,email:userDataRaw.email, address: userDataRaw.address};
+            const userDataRaw = await this.registerUserModel.create({fullname,email,address,picture,password, isFarmer});
+            const userDataFiltered = {_id: userDataRaw._id,fullname: userDataRaw.fullname,email:userDataRaw.email, address: userDataRaw.address, isFarmer: userDataRaw.isFarmer};
             return userDataFiltered;
         }
         

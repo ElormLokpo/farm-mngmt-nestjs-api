@@ -17,10 +17,10 @@ export class AuthUserController{
         @Body('address') address:string,
         @Body('picture') picture:string,
         @Body('password') password: string,
-
+        @Body('isFarmer') isFarmer:string
     
     ){
-        const userData = await this.regiseterUserService.registerUser(fullname, email,address,picture,password);
+        const userData = await this.regiseterUserService.registerUser(fullname, email,address,picture,password, isFarmer);
         return userData;
     }
 
