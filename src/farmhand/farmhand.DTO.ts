@@ -21,7 +21,7 @@ export const FarmHandSchema = mongoose.Schema({
     }
 
 
-})
+}, {timestamps:true})
 
 export interface FarmHandDTO{
     name:string, 
