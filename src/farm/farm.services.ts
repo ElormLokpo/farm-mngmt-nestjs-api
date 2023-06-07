@@ -20,7 +20,7 @@ export class FarmServices{
             owner
         });
 
-        return farmData;
+        return farmData.populate('owner');
     }
 
     async updateFarm(id:string, name:string, location:string, size:number, farm_type:string, capital:number, owner:string){
