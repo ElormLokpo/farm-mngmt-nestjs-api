@@ -29,7 +29,7 @@ export class FarmHandController{
 
 
     @Put('update/:id')
-    async updateFarmController(
+    async updateFarmHandController(
         @Param('id') id:string,
         @Body('name') name:string,
         @Body('farm') farm:string,
