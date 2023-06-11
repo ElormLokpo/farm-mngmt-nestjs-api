@@ -77,6 +77,13 @@ export class FarmProduceController{
             return farmproduceData;
     }
 
+    @Get('find/all')
+    async getAllFarmProduceController( ){
+            const farmproduceData = await this.farmproduceservices.getAllFarmProduce();
+    
+            return farmproduceData;
+    }
+
   
 
     @Patch('outofstock/:id')
