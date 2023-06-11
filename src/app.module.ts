@@ -7,6 +7,7 @@ import {ConfigModule} from '@nestjs/config';
 import { FarmModule } from './farm/farm.module';
 import { FarmHandModule } from './farmhand/farmhand.module';
 import { FarmProduceModule } from './inventory/farmproduce/farm.produce.module';
+import { EquipmentModule } from './inventory/equipment/equipment.module';
 
 @Module({
   imports: [
@@ -17,8 +18,8 @@ import { FarmProduceModule } from './inventory/farmproduce/farm.produce.module';
     GoogleAuthModule,
     FarmModule,
     FarmHandModule, 
-    FarmProduceModule
-    
+    FarmProduceModule,
+    EquipmentModule    
   ],
   controllers: [],
   providers: [],
