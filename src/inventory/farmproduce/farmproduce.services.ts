@@ -56,6 +56,11 @@ export class FarmProduceServices{
         return farmProduceData;
     };
 
+    async getAllFarmProduce(){
+        const farmProduceData =  await this.farmproducemodel.find();
+        return farmProduceData;
+    };
+
     async setOutOfStock(id:string){
         const farmProduceData =  await this.farmproducemodel.findByIdAndUpdate(id, {outofStock: true}, {new:true});
         return farmProduceData;

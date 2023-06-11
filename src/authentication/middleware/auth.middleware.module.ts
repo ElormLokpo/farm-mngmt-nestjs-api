@@ -1,13 +1,10 @@
-import {Module, NestModule, MiddlewareConsumer} from '@nestjs/common';
+import {Module} from '@nestjs/common';
 import { JwtModule } from '../jwt/jwt.module';
 import { AuthMiddleware } from './auth.middleware';
 
-
 @Module({
-    imports: [JwtModule]
+    imports: [JwtModule],
+    providers:[AuthMiddleware],
+    exports: [AuthMiddleware]
 })
-export class AuthMiddlewareModule implements NestModule{
-    configure(consumer:MiddlewareConsumer){
-        consumer.apply(AuthMiddleware).forRoutes();
-    }
-}
+export class AuthMiddlewareModule{}

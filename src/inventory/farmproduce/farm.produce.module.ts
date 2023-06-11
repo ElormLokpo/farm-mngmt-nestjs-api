@@ -1,5 +1,7 @@
-import {Module} from '@nestjs/common';
+import {Module, NestModule, MiddlewareConsumer} from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthMiddleware } from 'src/authentication/middleware/auth.middleware';
+import { AuthMiddlewareModule } from 'src/authentication/middleware/auth.middleware.module';
 import { FarmProduceController } from './farmproduce.controller';
 import { FarmProduceSchema } from './farmproduce.DTO';
 import { FarmProduceServices } from './farmproduce.services';
@@ -7,9 +9,17 @@ import { FarmProduceServices } from './farmproduce.services';
 
 @Module({
     imports:[
-        MongooseModule.forFeature([{name: 'FarmProduceModel', schema: FarmProduceSchema}])
+        MongooseModule.forFeature([{name: 'FarmProduceModel', schema: FarmProduceSchema}]),
+        AuthMiddlewareModule
     ],
     controllers: [FarmProduceController],
     providers: [FarmProduceServices]
 })
-export class FarmProduceModule{}
+export class FarmProduceModule implements NestModule{
+    configure(consumer: MiddlewareConsumer){
+        consumer
+        .apply(AuthMiddleware)
+        .exclude('farmproduce/find/all')
+        .forRoutes('farmproduce')
+     }
+}
