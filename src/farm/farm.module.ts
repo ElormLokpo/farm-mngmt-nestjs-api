@@ -5,10 +5,12 @@ import { FarmSchema } from './farm.DTO';
 import { FarmServices } from './farm.services';
 import { AuthMiddleware } from 'src/authentication/middleware/auth.middleware';
 import { AuthMiddlewareModule } from 'src/authentication/middleware/auth.middleware.module';
+import { JwtModule } from 'src/authentication/jwt/jwt.module';
 
 @Module({
     imports:[
         MongooseModule.forFeature([{name: 'FarmModel', schema: FarmSchema}]),
+        JwtModule,
         AuthMiddlewareModule
     ],
     controllers: [FarmController],
